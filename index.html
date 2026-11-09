@@ -1,5 +1,72 @@
-☾
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Revelation I</title>
 
-The Revelation remains sealed.
+<style>
+body{
+background:black;
+color:#c8b37f;
+font-family:Georgia;
+text-align:center;
+padding-top:100px;
+}
 
-const revealDate = new Date("2026-11-09T12:55:00");
+#clue{
+display:none;
+font-size:28px;
+}
+
+#countdown{
+font-size:32px;
+}
+</style>
+</head>
+
+<body>
+
+<h1>Revelation I</h1>
+
+<div id="countdown"></div>
+
+<div id="clue">
+The next sign lies where lingering scents are denied entry.
+</div>
+
+<script>
+
+const revealDate = new Date("2026-11-30T00:00:00");
+
+function updatePage(){
+
+const now = new Date();
+
+if(now >= revealDate){
+document.getElementById("countdown").style.display="none";
+document.getElementById("clue").style.display="block";
+return;
+}
+
+const diff = revealDate - now;
+
+const days = Math.floor(diff/(1000*60*60*24));
+const hours = Math.floor((diff/(1000*60*60))%24);
+const minutes = Math.floor((diff/(1000*60))%60);
+const seconds = Math.floor((diff/1000)%60);
+
+document.getElementById("countdown").innerHTML =
+"The Revelation remains sealed.<br><br>" +
+days + "d " +
+hours + "h " +
+minutes + "m " +
+seconds + "s";
+}
+
+updatePage();
+setInterval(updatePage,1000);
+
+</script>
+
+</body>
+</html>
