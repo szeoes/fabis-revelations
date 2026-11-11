@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Revelation XI</title>
+
+<style>
+body{
+background:black;
+color:#c8b37f;
+font-family:Georgia, serif;
+text-align:center;
+padding-top:120px;
+}
+
+#countdown{
+font-size:40px;
+}
+
+#clue{
+display:none;
+font-size:30px;
+max-width:800px;
+margin:auto;
+}
+</style>
+</head>
+
+<body>
+
+<div id="countdown"></div>
+
+<div id="clue">
+Spirits gather here long after their bodies have vanished.
+</div>
+
+<script>
+
+const revealDate = new Date("2026-12-10T00:00:00");
+
+function updatePage(){
+
+const now = new Date();
+
+if(now >= revealDate){
+
+document.getElementById("countdown").style.display = "none";
+document.getElementById("clue").style.display = "block";
+
+return;
+}
+
+const diff = revealDate - now;
+
+const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
+const minutes = Math.floor((diff / (1000 * 60)) % 60);
+const seconds = Math.floor((diff / 1000) % 60);
+
+document.getElementById("countdown").innerHTML =
+days + "d " +
+hours + "h " +
+minutes + "m " +
+seconds + "s";
+
+}
+
+updatePage();
+setInterval(updatePage,1000);
+
+</script>
+
+</body>
+</html>
